@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<AceAceGroupTestApplication.Models.OneSignalApplication>
+@Html.ActionLink("INDEX", "AdminIndex", "Admin", null, new { @class = "navbar-brand" })
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Create New Application", "CreateanApp", "Admin", null, new { @class = "navbar-brand" })
+}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        Html.ActionLink("Edit", "UpdateanApp", new { id = item.ID }); Html.Raw("|");
+                    }
+                    @Html.ActionLink("Details", "GettanApp", new { id = item.ID })  |
+                </td>
+            </tr>
+        }
+    </table>
+
